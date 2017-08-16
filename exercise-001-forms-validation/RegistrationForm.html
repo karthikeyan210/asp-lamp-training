@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="FormStyle.css">
+    <script type="text/javascript">
+        // To add more fileds in the qualification and experience details
+        function addMoreFields(id, spanId)
+        {
+            var remove = document.getElementById(spanId);
+            var container = document.getElementById(id);
+            var table =  document.createElement('table');
+            var columnLength = 3;
+            var row = document.createElement('tr');
+            for (var i = 0; i < columnLength; i++) {
+                var column = "col" + i;
+                var input = "input" + i;
+                var column = document.createElement('td');
+                var input = document.createElement("input");
+                input.setAttribute("type","text");
+                column.appendChild(input);
+                row.appendChild(column);
+            }
+            table.appendChild(row);
+            container.appendChild(table);
+            var containerLength = container.children.length;
+            if (containerLength == 1) {
+                var removeButton = document.createElement('input');
+                removeButton.setAttribute("type","button");
+                removeButton.setAttribute("value","-");
+                removeButton.onclick = function() { removeFields(id, spanId); };
+                remove.appendChild(removeButton);
+            }
+        }
+        //To remove the fields which added unnecessarily
+        function removeFields(id, spanId)
+        {
+            var remove = document.getElementById(spanId);
+            var container = document.getElementById(id);
+            var containerLength = container.children.length;
+            var table = container.getElementsByTagName("table");
+            container.removeChild(table[table.length-1]);
+            if (containerLength == 1) {
+                remove.removeChild(remove.children[0]);
+            }
+        }
+        //To add the more skills in the profile
+        function addSkill(id)
+        {
+            var remove = document.getElementById("remove");
+            var container = document.getElementById(id);
+            var input = document.createElement("input");
+            input.setAttribute("type","text");
+            container.appendChild(input);
+            container.appendChild(document.createElement('br'));
+            var containerLength = container.children.length;
+            if (containerLength == 2) {
+                var removeButton = document.createElement('input');
+                removeButton.setAttribute("type","button");
+                removeButton.setAttribute("value","-");
+                removeButton.onclick = removeSkill;
+                remove.appendChild(removeButton);
+            }
+        }
+        //To remove unnecessarily added skills
+        function removeSkill() 
+        {
+            var remove = document.getElementById("remove");
+            var container = document.getElementById("add-skill");
+            var containerLength = container.children.length;
+            container.removeChild(container.childNodes[containerLength-1]);
+            container.removeChild(container.childNodes[containerLength-2]);
+            if (containerLength == 2) {
+                remove.removeChild(remove.children[0]);
+            }
+        }
+        //To check the required fields are filled
+        function validation()
+        {
+            var isValid = true;
+            var inputs = document.forms["myForm"].getElementsByTagName("input");
+            var error = document.getElementsByClassName("error");
+            var index = 0;
+            for (var i = 0; i < inputs.length; i++) {
+                var dataRequired = inputs[i].getAttribute("data-required");
+                if (dataRequired) {
+                    if (inputs[i].value == "") {
+                        error[index].innerHTML = "Must fill this field";
+                        isValid = false;
+                    } else {
+                        error[index].innerHTML = "";
+                    }
+                    index++;
+                }
+            }
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+<div id ="header">
+    <h1>Registration Form</h1>
+</div>
+<form action = "" method = "" onsubmit = "return validation();" name = "myForm">
+    <label>Full Name:</label>
+    <input type = "text" id = "full-name" name = "full-name" data-required = "true">
+    <span class = "error" id = "full-name-error"></span><br>
+    <label>Email:</label>
+    <input type = "email" id = "email-id" name = "email-id" data-required = "true">
+    <span class = "error" id = "email-id-error"></span><br>
+    <label>Gender:</label>
+    <input type = "radio" id = "male" name = "gender">Male
+    <input type = "radio" id = "female" name = "gender">Female<br>
+    <label>Date Of Birth:</label>
+    <input type = "date" id = "dob" name = "dob"><br>
+    <label>Qualification:</label>
+    <table id = "qualification-table">
+        <tr>
+            <td>Education</td>
+            <td>Course</td>
+            <td>Year</td>
+        </tr>
+        <tr>
+            <td><input type = "text" name = "education"></td>
+            <td><input type = "text" name = "course"></td>
+            <td><input type = "text" name = "year"></td>
+        </tr>
+    </table>
+    <div id = "add-more"></div>
+    <span><input type = "button" onclick = "addMoreFields('add-more', 'removeField')" value = "+"/>
+    </span>
+    <span id = "removeField"></span><br>
+    <label>Experience:</label>
+    <table id = "experience-table">
+        <tr>
+            <td>From</td>
+            <td>To</td>
+            <td>Organization</td>
+        </tr>
+        <tr>
+            <td><input type = "text" name = "from"></td>
+            <td><input type = "text" name = "to"></td>
+            <td><input type = "text" name = "organization"></td>
+        </tr>
+    </table>    
+    <div id = "container"></div>
+    <span><input type = "button" onclick = "addMoreFields('container','remove-field')" value = "+"/>
+    </span>
+    <span id = "remove-field"></span><br>
+    <label>Skillsets:</label><br>
+    <input type = "text" id = "skill" name = "skill" data-required = "true">
+    <span class = "error"></span><br>
+    <div id = "add-skill"></div>
+    <span><input type = "button" onclick = "addSkill('add-skill')" value = "+"/></span>
+    <span id = "remove"></span><br>
+   <input type = "submit" value = "register">
+</form>
+</body>
+</html>
