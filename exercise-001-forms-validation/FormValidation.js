@@ -61,24 +61,12 @@ function validateInput()
     var dob = document.getElementById("dob").value;
     var genderLength = document.myForm.gender.length;
     var countGender = 0;
-    var quaEducation = document.getElementsByClassName("education");
-    var quaCourse = document.getElementsByClassName("course");
-    var quaYear = document.getElementsByClassName("year");
-    var educationError = document.getElementsByClassName("education-error");
-    var courseError = document.getElementsByClassName("course-error");
-    var yearError = document.getElementsByClassName("year-error");
-    var experienceFrom = document.getElementsByClassName("from");
-    var experienceTo = document.getElementsByClassName("to");
-    var experienceOrg = document.getElementsByClassName("organization");
-    var fromError = document.getElementsByClassName("from-error");
-    var toError = document.getElementsByClassName("to-error");
-    var orgError = document.getElementsByClassName("organization-error");
     var skill = document.getElementsByClassName("skill");
     var skillError = document.getElementsByClassName("skill-error");
     var nameRegExp = /^([a-zA-Z]+)([ \.-][a-zA-Z]+)?$/;
     var emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var dobRegExp = /^[\d]{2}[/][\d]{2}[/][\d]{4}$/;
     var yearRegExp = /^([\d]{4})$/;
+    var date = new Date();
     if (!nameRegExp.test(fullName)) {
         document.getElementById("full-name-error").innerHTML = 
         "Enter a valid Name";
@@ -102,6 +90,21 @@ function validateInput()
         document.getElementById("gender-error").innerHTML = 
         "";
     }
+    isValid = validateDob(dob);
+    isValid = validateQualification();
+    isValid = validateExperience();
+    for (var i = 0; i < skill.length; i++) {
+        if (!nameRegExp.test(skill[i].value)) {
+            skillError[i].innerHTML = "Enter a valid Skill";
+            isValid = false;
+        }
+    }
+    return isValid;
+}
+//To validate the date of birth
+function validateDob(dob)
+{
+    var dobRegExp = /^[\d]{2}[/][\d]{2}[/][\d]{4}$/;
     if (!dobRegExp.test(dob)) {
         document.getElementById("dob-error").innerHTML = 
         "Enter valid Date";
@@ -129,6 +132,21 @@ function validateInput()
         "Enter valid Date of Birth";
         isValid = false;
     }
+    return isValid;
+}
+//To validate the qualification
+function validateQualification()
+{
+    var quaEducation = document.getElementsByClassName("education");
+    var quaCourse = document.getElementsByClassName("course");
+    var quaYear = document.getElementsByClassName("year");
+    var educationError = document.getElementsByClassName("education-error");
+    var courseError = document.getElementsByClassName("course-error");
+    var yearError = document.getElementsByClassName("year-error");
+    var nameRegExp = /^([a-zA-Z]+)([ \.-][a-zA-Z]+)?$/;
+    var yearRegExp = /^([\d]{4})$/;
+    var date = new Date();
+
     for (var i = 0; i < quaEducation.length; i++) {
         if (!nameRegExp.test(quaEducation[i].value)) {
             educationError[i].innerHTML = 
@@ -152,6 +170,22 @@ function validateInput()
             }
         }
     }
+    return isValid;
+}
+
+//To validate the experience
+function validateExperience()
+{
+    var experienceFrom = document.getElementsByClassName("from");
+    var experienceTo = document.getElementsByClassName("to");
+    var experienceOrg = document.getElementsByClassName("organization");
+    var fromError = document.getElementsByClassName("from-error");
+    var toError = document.getElementsByClassName("to-error");
+    var orgError = document.getElementsByClassName("organization-error");
+    var yearError = document.getElementsByClassName("year-error");
+    var nameRegExp = /^([a-zA-Z]+)([ \.-][a-zA-Z]+)?$/;
+    var yearRegExp = /^([\d]{4})$/;
+    var date = new Date();
 
     for (var i = 0; i < experienceFrom.length; i++) {
         if (!yearRegExp.test(experienceFrom[i].value)) {
@@ -177,12 +211,6 @@ function validateInput()
         if (!nameRegExp.test(experienceOrg[i].value)) {
             orgError[i].innerHTML = 
             "Enter a valid Organization";
-            isValid = false;
-        }
-    }
-    for (var i = 0; i < skill.length; i++) {
-        if (!nameRegExp.test(skill[i].value)) {
-            skillError[i].innerHTML = "Enter a valid Skill";
             isValid = false;
         }
     }
