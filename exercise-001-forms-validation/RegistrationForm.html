@@ -8,23 +8,13 @@
         function addMoreFields(id, spanId)
         {
             var remove = document.getElementById(spanId);
-            var container = document.getElementById(id);
-            var table =  document.createElement('table');
-            var columnLength = 3;
-            var row = document.createElement('tr');
-            for (var i = 0; i < columnLength; i++) {
-                var column = "col" + i;
-                var input = "input" + i;
-                var column = document.createElement('td');
-                var input = document.createElement("input");
-                input.setAttribute("type","text");
-                column.appendChild(input);
-                row.appendChild(column);
-            }
-            table.appendChild(row);
-            container.appendChild(table);
-            var containerLength = container.children.length;
-            if (containerLength == 1) {
+            var previousElement = document.getElementById(id).previousElementSibling;
+            var previousElementClone = previousElement.cloneNode(true);
+            var lastElement = document.getElementById(id);
+            var containerLength = lastElement.children.length;
+            lastElement.appendChild(previousElementClone);
+            lastElement.appendChild(document.createElement('br'));
+            if (containerLength == 0) {
                 var removeButton = document.createElement('input');
                 removeButton.setAttribute("type","button");
                 removeButton.setAttribute("value","-");
@@ -37,43 +27,17 @@
         {
             var remove = document.getElementById(spanId);
             var container = document.getElementById(id);
-            var containerLength = container.children.length;
-            var table = container.getElementsByTagName("table");
-            container.removeChild(table[table.length-1]);
-            if (containerLength == 1) {
+            var containerLength = container.childNodes.length;
+            var lastElement = container.childNodes[containerLength-1];
+            var lastBeforeElement = container.childNodes[containerLength-2];
+            container.removeChild(lastElement);
+            container.removeChild(lastBeforeElement);
+            containerLength = container.childNodes.length;
+            if (containerLength == 0) {
                 remove.removeChild(remove.children[0]);
             }
         }
-        //To add the more skills in the profile
-        function addSkill(id)
-        {
-            var remove = document.getElementById("remove");
-            var container = document.getElementById(id);
-            var input = document.createElement("input");
-            input.setAttribute("type","text");
-            container.appendChild(input);
-            container.appendChild(document.createElement('br'));
-            var containerLength = container.children.length;
-            if (containerLength == 2) {
-                var removeButton = document.createElement('input');
-                removeButton.setAttribute("type","button");
-                removeButton.setAttribute("value","-");
-                removeButton.onclick = removeSkill;
-                remove.appendChild(removeButton);
-            }
-        }
-        //To remove unnecessarily added skills
-        function removeSkill() 
-        {
-            var remove = document.getElementById("remove");
-            var container = document.getElementById("add-skill");
-            var containerLength = container.children.length;
-            container.removeChild(container.childNodes[containerLength-1]);
-            container.removeChild(container.childNodes[containerLength-2]);
-            if (containerLength == 2) {
-                remove.removeChild(remove.children[0]);
-            }
-        }
+        
         //To check the required fields are filled
         function validation()
         {
@@ -120,6 +84,8 @@
             <td>Course</td>
             <td>Year</td>
         </tr>
+    </table>
+    <table>
         <tr>
             <td><input type = "text" name = "education"></td>
             <td><input type = "text" name = "course"></td>
@@ -137,6 +103,8 @@
             <td>To</td>
             <td>Organization</td>
         </tr>
+    </table>
+    <table>
         <tr>
             <td><input type = "text" name = "from"></td>
             <td><input type = "text" name = "to"></td>
@@ -149,9 +117,9 @@
     <span id = "remove-field"></span><br>
     <label>Skillsets:</label><br>
     <input type = "text" id = "skill" name = "skill" data-required = "true">
-    <span class = "error"></span><br>
     <div id = "add-skill"></div>
-    <span><input type = "button" onclick = "addSkill('add-skill')" value = "+"/></span>
+    <span class = "error"></span><br>
+    <span><input type = "button" onclick = "addMoreFields('add-skill', 'remove')" value = "+"/></span>
     <span id = "remove"></span><br>
    <input type = "submit" value = "register">
 </form>
