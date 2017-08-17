@@ -12,3 +12,6 @@ label {
 .error {
     color:red;
 }
+#gender-error {
+    color: red;
+}
