@@ -7,11 +7,6 @@ function validation()
 {
     var isValid = true;
     var inputs = document.forms["myForm"].getElementsByTagName("input");
-    var error = document.getElementsByClassName("error");
-    var nameRegExp = /^([a-zA-Z]+)([ \.-][a-zA-Z]+)?$/;
-    var emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    var yearRegExp = /^([\d]{4})$/;
-    var date = new Date();
     var msg = {error:""};
     var countChecked = 0;
     for (var i = 0; i < inputs.length; i++) {
@@ -51,6 +46,9 @@ function validation()
 }
 /**
  * To validate all the inputs
+ *
+ * @param object inputs All the input tags in the form
+ * @param object msg    Message for display the errors
  *
  * @return boolean
  */
@@ -104,6 +102,10 @@ function validateInput(inputs, msg)
 }
 /**
  * To validate the date of birth
+ *
+ * @param object inputs All the input tags in the form
+ * @param int    index  Index of the inputs
+ * @param object msg    Message for display the errors
  *
  * @return boolean
  */

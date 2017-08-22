@@ -1,6 +1,9 @@
 /**
  * To clone the previous field in the form
  *
+ * @param string id     Id of the div where the clone fields are placed
+ * @param string spanId Id of the romove button
+ *
  * @return void
  */
 function addMoreFields(id, spanId)
@@ -22,6 +25,8 @@ function addMoreFields(id, spanId)
 /**
  * To remove the fields
  *
+ * @param string id     Id of the div where the clone fields are placed
+ * @param string spanId Id of the romove button
  * @return void
  */
 function removeFields(id, spanId)
