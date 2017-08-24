@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        table, td, tr, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td {
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <div id = "display-address"></div>
+    <button id = "previous" onclick="previous()"><<</button>
+    <button id = "next" onclick="next()">>></button>
+</body>
+<script type="text/javascript">
+    document.getElementById("next").addEventListener('click', next);
+    document.getElementById("previous").addEventListener('click', previous);
+    var i = 0;
+    var data;
+    displayData(i);
+    function previous()
+    {
+        if (i > 0) {
+            i--;
+            displayData(i);
+        }
+    }
+    function next()
+    {
+        if (i < data.length-1) {
+            i++;
+            displayData(i);
+        }
+    }
+    function displayData(i)
+    {
+        var http;
+        if (window.XMLHttpRequest) { 
+            http = new XMLHttpRequest();
+        } else if (window.ActiveXObject) { 
+            http = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                data = JSON.parse(this.responseText);
+                console.log(typeof data);
+                console.log(data);
+                renderHTML(data, i);
+            }
+        }
+        http.open("GET",'address.json');
+        http.send();
+        function renderHTML(data, i)
+        {
+            var content
+            content = "firstName:"+data[i].fname+"<br>lastName:"+data[i].lname+"<br>telephone:"+data[i].tel+"<br>street:"+data[i].street+"<br>city:"+data[i].city+"<br>state"+data[i].state+"<br>Pincode:"+data[i].zip+"<br>";
+            var para = document.getElementById("display-address");
+            para.innerHTML = content;
+        }
+    }
+</script>
+</html>

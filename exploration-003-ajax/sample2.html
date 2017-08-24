@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <button id = "greet" name = "welcome">click</button>
+    <p id = "greet-message"></p>
+</body>
+<script type="text/javascript">
+    document.getElementById("greet").addEventListener('click', greet);
+    function greet()
+    {
+        var http;
+        if (window.XMLHttpRequest) { 
+            http = new XMLHttpRequest();
+        } else if (window.ActiveXObject) { 
+            http = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("greet-message").innerHTML = this.responseText;
+                console.log(this.responseText);
+            }
+        }
+        http.open("POST",'greet.html');
+        http.send();
+    }
+</script>
+</html>

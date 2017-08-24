@@ -1,0 +1,92 @@
+[
+    {
+        "fname": "Grady",
+        "lname": "Sherstan",
+        "tel": "(232)873-4391",
+        "street": "9732 Ac Ct",
+        "city": "Lenoir",
+        "state": "HI",
+        "zip": 15115
+    },
+    {
+        "fname": "Marilyn",
+        "lname": "Rollins",
+        "tel": "(130)809-4166",
+        "street": "2886 Sollicitudin St",
+        "city": "Odessa",
+        "state": "MT",
+        "zip": 12444
+    },
+    {
+        "fname": "Nerissa",
+        "lname": "Planty",
+        "tel": "(996)524-9403",
+        "street": "7682 Eros St",
+        "city": "Ogden",
+        "state": "OK",
+        "zip": 89348
+    },
+    {
+        "fname": "Barkat",
+        "lname": "Douglas",
+        "tel": "(587)032-7919",
+        "street": "2992 Sit St",
+        "city": "Marion",
+        "state": "UT",
+        "zip": 61762
+    },
+    {
+        "fname": "Kristy",
+        "lname": "Vickers",
+        "tel": "(802)705-2738",
+        "street": "2864 Dui Ln",
+        "city": "Henderson",
+        "state": "DE",
+        "zip": 79196
+    },
+    {
+        "fname": "Ayeola",
+        "lname": "Demarco",
+        "tel": "(163)189-3633",
+        "street": "3961 Eget Ct",
+        "city": "Bradford",
+        "state": "IA",
+        "zip": 25581
+    },
+    {
+        "fname": "Fernando",
+        "lname": "Josey",
+        "tel": "(175)210-8506",
+        "street": "2848 Suspendisse Rd",
+        "city": "Roseville",
+        "state": "AL",
+        "zip": 16376
+    },
+    {
+        "fname": "Kate",
+        "lname": "Ormond",
+        "tel": "(669)015-3193",
+        "street": "2464 Amet Ave",
+        "city": "Waukesha",
+        "state": "NY",
+        "zip": 14306
+    },
+    {
+        "fname": "Rahul",
+        "lname": "Stafford",
+        "tel": "(626)999-6273",
+        "street": "4824 Lacus St",
+        "city": "Smyrna",
+        "state": "UT",
+        "zip": 77418
+    },
+    {
+        "fname": "Natalia",
+        "lname": "Parham",
+        "tel": "(962)195-0070",
+        "street": "1168 Eros Ave",
+        "city": "Greensboro",
+        "state": "RI",
+        "zip": 92007
+    }
+]

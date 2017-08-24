@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <input type = "text" name = "firstName" id = "firstName">
+    <input type="text" name="lastName" id = "lastName">
+    <button id = "but" name = "greet">Greet</button>
+    <p id = "output"></p>
+
+</body>
+<script type="text/javascript">
+    document.getElementById("but").addEventListener('click', setName);
+    function setName()
+    {
+        var firstName =  document.getElementById('firstName').value;
+        var lastName =  document.getElementById('lastName').value;
+        var param = "firstName="+firstName+"&lastName="+lastName;
+        console.log(typeof param);
+        var httpRequest;
+        if (window.XMLHttpRequest) { 
+            httpRequest = new XMLHttpRequest();
+        } else if (window.ActiveXObject) { 
+            httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        httpRequest.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(this.responseText);
+                document.getElementById("output").innerHTML = this.responseText;
+                console.log(this.responseText);
+            }
+        }
+        httpRequest.open("POST",'greet.php');
+        httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpRequest.send(param);
+    }
+</script>
+</html>

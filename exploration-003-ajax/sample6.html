@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        table, td, tr, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td {
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <button id = "greet" name = "welcome">click here to create table</button>
+    <div id = "greet-message"></div>
+</body>
+<script type="text/javascript">
+    var start = 0;
+    var end = 2;
+    document.getElementById("greet").addEventListener('click', greet);
+    function greet()
+    {
+        var http;
+        if (window.XMLHttpRequest) { 
+            http = new XMLHttpRequest();
+        } else if (window.ActiveXObject) { 
+            http = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                console.log(typeof data);
+                console.log(data);
+                renderHTML(data);
+            }
+        }
+        http.open("GET",'address.json');
+        http.send();
+        function renderHTML(data)
+        {
+            var content = "";
+            content += "<table >";
+            if (start == 0) {
+                content += "<tr><th>firstName</th><th>lastName</th><th>telephone</th>";
+                content +=  "<th>street</th><th>city</th><th>state</th><th>zip</th></tr>";
+            }
+            for (var i = start; i < end; i++) {
+               content += "<tr><td>"+data[i].fname+"</td><td>"+data[i].lname+"</td><td>"+data[i].tel+"</td><td>"+data[i].street+"</td><td>"+data[i].city+"</td><td>"+data[i].state+"</td><td>"+data[i].zip+"</td></tr>";
+            }
+            content += "</table>";
+            var para = document.getElementById("greet-message");
+            para.insertAdjacentHTML('beforeend', content);
+            start = end;
+            end = end +2;
+            if (end > 10) {
+            document.getElementById("greet").style.display = "none";                
+            }
+        }
+    }
+</script>
+</html>
