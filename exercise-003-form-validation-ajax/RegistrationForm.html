@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="FormStyle.css">
+</head>
+<body>
+<div id ="header">
+    <h1>Registration Form</h1>
+</div>
+<form action = "" method = "" onsubmit = "return confirmSubmit();" name = "myForm">
+    <div class = "error" id = "submit-error"></div>
+    <label>Full Name:</label>
+    <input type = "text" id = "full-name" name = "full-name" data-required = "true"
+    field-type = "name" onchange = "validate(this);">
+    <span class = "error" id = "full-name-error"></span><br>
+    <label>Email:</label>
+    <input type = "text" id = "email-id" name = "email-id" data-required = "true"
+    field-type = "email" onchange = "validate(this);">
+    <span class = "error" id = "email-id-error"></span><br>
+    <label>Gender:</label>
+    <input type = "radio" id = "male" name = "gender" class = "choice-field"
+    onchange = "validateCheckFields();">Male<span></span>
+    <input type = "radio" id = "female" name = "gender" class = "choice-field"
+    onchange = "validateCheckFields();">Female
+    <span id = "gender-error" class = "error"></span><br>
+    <label>Date Of Birth:</label>
+    <input type = "text" id = "dob" name = "dob" data-required = "true"
+    placeholder = "dd/mm/yyyy" field-type = "dob" onchange = "validate(this);">
+    <span class = "error" id = "dob-error"></span><br>
+    <label>Qualification:</label>
+    <table id = "qualification-table">
+        <tr>
+            <td><input type = "text" class = "education" data-required = "true"
+            placeholder = "Education e.g(UG)" field-type = "name"
+            onchange = "validate(this);">
+            <div class = "error"></div></td>
+            <td><input type = "text" class = "course" data-required = "true"
+            placeholder = "Course e.g(B.E/ECE)" field-type = "name"
+            onchange = "validate(this);">
+            <div class = "error"></div></td>
+            <td><input type = "text" class = "year" data-required = "true"
+            placeholder = "Year (2017)" field-type = "year" onchange = "validate(this);">
+            <div class = "error"></div></td>
+        </tr>
+    </table>
+    <div id = "add-more"></div>
+    <input type = "button" onclick = "addMoreFields('add-more', 'removeField')" value = "+"/>
+    <span id = "removeField"></span><br>
+    <label>Experience:</label>
+    <table id = "experience-table">
+        <tr>
+            <td><input type = "text" class = "from" data-required = "true"
+            placeholder = "From e.g(2016)" field-type = "year"
+            onchange = "validate(this);">
+            <div class = "error"></div></td>
+            <td><input type = "text" class = "to" data-required = "true"
+            placeholder = "To e.g(2017)" field-type = "year"
+            onchange = "validate(this);">
+            <div class = "error"></div></td>
+            <td><input type = "text" class = "organization" data-required = "true"
+            placeholder = "Organization e.g(Aspire)" field-type = "name"
+            onchange = "validate(this);">
+            <div class = "error"></div></td>
+        </tr>
+    </table>    
+    <div id = "container"></div>
+    <input type = "button" onclick = "addMoreFields('container','remove-field')" value = "+"/>
+    <span id = "remove-field"></span><br>
+    <label>Skillsets:</label><br>
+    <div>
+        <input type = "text" class = "skill" name = "skill" data-required = "true"
+        field-type = "name" onchange = "validate(this);">
+        <span class = "error skill-error"></span><br>
+    </div>
+    <div id = "add-skill"></div>
+    <input type = "button" onclick = "addMoreFields('add-skill', 'remove')" value = "+"/>
+    <span id = "remove"></span><br>
+    <input type = "submit" value = "register">
+    <span></span>
+</form>
+<script type="text/javascript" src = "validateChooseFields.js"></script>
+<script type="text/javascript" src = "AddRemoveField.js"></script>
+<script type="text/javascript" src = "validation.js"></script>
+<script type="text/javascript" src = "confirmSubmit.js"></script>
+</body>
+</html>
