@@ -3,7 +3,7 @@ require 'dbconnection.php';
 
 $sth = $dbh->prepare("
     SELECT user.firstname as name, grad.name as edu 
-    from user join user_graduation as ugrad on user.id = ugrad.user_id 
+    from users join user_graduation as ugrad on user.id = ugrad.user_id 
     join graduation as grad on ugrad.graduation_id = grad.id  
     where grad.name <> :p1
 ");

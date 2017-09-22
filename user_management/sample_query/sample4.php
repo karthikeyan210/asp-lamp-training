@@ -5,7 +5,7 @@ $sth = $dbh->prepare("
     SELECT user.firstname as name, grad.name as edu 
     from user inner join user_graduation as ugrad on user.id = ugrad.user_id 
     inner join graduation as grad on grad.id = ugrad.graduation_id 
-    order by name ASC, grad.id ASC;
+    order by name ASC, grad.id ASC
 ");
 //$p1 = "SSLC";
 //$param = array(":p1"=>$p1);
